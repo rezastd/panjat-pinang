@@ -23,6 +23,16 @@ python3 -m http.server 8000
 
 **Rules:** reach the prize wheel at 13 m before the 2 rival AI teams and before the 2:00 timer. Greasy yellow zones drain grip and push your balance — if the balance marker hits the edge you slip down. Rest (stop mashing) to recover stamina.
 
+## ✨ Realism Upgrade
+
+- Renderer: `ACESFilmicToneMapping` (exposure 1.1), sRGB, `PCFSoftShadowMap`; warm afternoon sun + hemisphere + ambient bounce
+- Sky: gradient dome + drifting low-poly clouds; distant tree/house/tent silhouette ring
+- Ground: multi-layer canvas texture (base, patches, 2400+ speckles) with roughness variation; instanced grass tufts (220), stones, glossy mud pits with expanding ripple rings on splash/landing
+- Pole: areca wood-grain canvas texture (vertical streaks, knots), grease bands with drip-streak texture + clearcoat sheen/specular; areca leaf crown (bent frond planes); detailed hanging prizes (bicycle torus wheels + frame, TV screen, fan blades, kettle) that sway/rotate
+- Climbers: articulated groups (shoulder/elbow/hip/knee pivots), varied skin tones/shirt/shorts, eyes, cap-or-hair variation; 3-person pyramid (top/mid/base roles); grip arms wrap pole, legs clamp; torso lean + head bob tied to velocity/effort; stamina scales arm-reach speed
+- Flags/bunting: red-white waving plane geometry (per-vertex sine wave)
+- Feedback: grease-splash burst + dust on slip, pole wobble, subtle camera shake on player stumble, confetti on win; capped/reused particle buffers and temp vectors for 60 fps
+
 ## ✨ Features
 
 - Three.js 0.160 (CDN importmap): hemisphere + shadowed directional sun, night-lamp point light, fog, canvas ground texture, clearcoat "grease sheen" PBR material on the pinang trunk
