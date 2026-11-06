@@ -12,8 +12,14 @@ const $ = (id) => document.getElementById(id);
 // ============ AUDIO (WebAudio oscillator, no assets) ============
 let AC = null;
 function audio() {
-  if (!AC) AC = new (window.AudioContext || window.webkitAudioContext)();
-  if (AC.state === 'suspended') AC.resume();
+  try {
+    if (!AC) {
+      const Ctx = window.AudioContext || window.webkitAudioContext;
+      if (!Ctx) return null;
+      AC = new Ctx();
+    }
+    if (AC && AC.state === 'suspended') AC.resume();
+  } catch { /* audio unavailable — game must still start */ }
   return AC;
 }
 function tone(freq, dur = 0.12, type = 'square', vol = 0.08, when = 0, slideTo = null) {
@@ -588,7 +594,8 @@ function updateHUD() {
   $('grease-warn').classList.toggle('hidden', !(state === 'playing' && inGrease(player.height)));
 }
 function startGame() {
-  audio(); sfx.click();
+  try { audio(); } catch {}
+  try { sfx.click(); } catch {}
   resetGame();
   state = 'playing';
   $('overlay-start').classList.add('hidden');
@@ -605,6 +612,7 @@ function restart() {
 }
 $('btn-start').addEventListener('click', startGame);
 $('btn-restart').addEventListener('click', restart);
+window.__booted = true;
 
 function endGame(playerWon, reason) {
   state = 'over';
