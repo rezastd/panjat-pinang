@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+<title>Panjat Pinang 3D — Simulator 17 Agustus 🇮🇩</title>
+<link rel="stylesheet" href="style.css" />
+<script type="importmap">
+{
+  "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+  }
+}
+</script>
+</head>
+<body>
+<div id="app">
+  <canvas id="scene"></canvas>
+
+  <!-- HUD -->
+  <div id="hud" class="hidden">
+    <div class="hud-top">
+      <div class="hud-card" id="hud-timer">⏱ 0:00</div>
+      <div class="hud-card race"><span id="hud-pos">P1</span><span id="hud-progress">0%</span></div>
+      <div class="hud-card"><button id="btn-cam" title="Ganti kamera / Switch camera">🎥 Ikuti</button></div>
+    </div>
+    <div class="hud-bottom">
+      <div class="meter">
+        <label>💪 Stamina <span id="stamina-num">100</span></label>
+        <div class="bar"><div id="stamina-fill"></div></div>
+      </div>
+      <div class="meter">
+        <label>🤲 Grip / Cengkeraman <span id="grip-num">100</span></label>
+        <div class="bar grip"><div id="grip-fill"></div></div>
+      </div>
+      <div class="meter balance">
+        <label>⚖️ Keseimbangan / Balance</label>
+        <div class="bar bal"><div id="bal-marker">▼</div></div>
+      </div>
+      <div class="hud-card height">📏 <span id="hud-height">0.0 m</span></div>
+    </div>
+  </div>
+
+  <!-- Grease warning -->
+  <div id="grease-warn" class="hidden">⚠️ ZONA LICIN! / SLIPPERY ZONE! 🧴</div>
+
+  <!-- Start overlay -->
+  <div id="overlay-start" class="overlay">
+    <div class="panel">
+      <div class="flags">🇮🇩 🇮🇩 🇮🇩</div>
+      <h1>PANJAT PINANG 3D</h1>
+      <p class="sub">Simulator Lomba 17 Agustus &bull; 17-August Greased-Pole Climb Simulator</p>
+      <div class="howto">
+        <div><b>🇮🇩 Cara main:</b> Tekan <kbd>SPACE</kbd> berulang untuk memanjat, <kbd>A</kbd>/<kbd>D</kbd> atau <kbd>←</kbd>/<kbd>→</kbd> untuk jaga keseimbangan. Jaga <b>stamina</b> &amp; <b>grip</b> — zona licin bikin merosot! Raih hadiah di puncak sebelum tim lawan &amp; sebelum waktu habis.</div>
+        <div><b>🇬🇧 How to play:</b> Mash <kbd>SPACE</kbd> to shinny up, <kbd>A</kbd>/<kbd>D</kbd> or <kbd>←</kbd>/<kbd>→</kbd> to balance. Watch <b>stamina</b> &amp; <b>grip</b> — greasy zones make you slip! Grab the prizes before rival teams &amp; before time runs out.</div>
+      </div>
+      <button id="btn-start" class="big">🚩 MULAI / START</button>
+      <p class="tiny">WASD/panah + SPACE &bull; tombol sentuh tersedia di HP &bull; kamera: tombol 🎥 / drag mouse</p>
+    </div>
+  </div>
+
+  <!-- Result overlay -->
+  <div id="overlay-result" class="overlay hidden">
+    <div class="panel">
+      <div class="flags" id="result-flags">🏆</div>
+      <h1 id="result-title">MENANG!</h1>
+      <p class="sub" id="result-sub">Kamu meraih hadiah!</p>
+      <table id="result-table"></table>
+      <button id="btn-restart" class="big">🔄 MAIN LAGI / RESTART</button>
+    </div>
+  </div>
+
+  <!-- Touch controls -->
+  <div id="touch" class="hidden">
+    <div class="t-left">
+      <button id="t-left" class="tbtn">◀</button>
+      <button id="t-right" class="tbtn">▶</button>
+    </div>
+    <div class="t-right">
+      <button id="t-climb" class="tbtn climb">⬆ PANJAT</button>
+    </div>
+  </div>
+</div>
+<script type="module" src="main.js"></script>
+</body>
+</html>
