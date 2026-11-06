@@ -44,6 +44,26 @@ python3 -m http.server 8000
 - Touch buttons for mobile, follow/orbit camera toggle
 - 2 AI opponents with varied speed and random slips; win/lose detection + results table + restart
 
+## Realism pass 2
+
+- **Image-based lighting:** sky + sun + earth bounce prefiltered with
+  `PMREMGenerator`; the greased poles now reflect the sky through their
+  clearcoat instead of a constant highlight.
+- **Procedural normal maps:** ground, bark and grease get Sobel normals.
+- **Grease:** soft alpha-mapped smears with irregular drip edges and a
+  wet clearcoat, rather than hard tape-like bands.
+- **Shadows:** 2048 PCFSoft, blurred, normal-biased; long late-afternoon
+  pole shadows.
+- **Anatomy:** rounded torso/shorts, capsule limbs, hands, feet, neck,
+  shoes; the crowd now has legs, shoes and waving arms.
+- **AI realism:** teams have their own stamina — they slow as they tire
+  and take short rests, so a steady player can come back.
+- **Atmosphere:** macro ground variation (kills tiling), higher clouds,
+  wind gusts, birds, drifting leaves, soft particles.
+- **Ambience:** synthesised wind / crowd / cicadas; `M` mutes.
+- **Camera:** pulled back and raised so a 13 m pole reads as a pole.
+
+
 ## 📁 Files
 
 - `index.html` — scene canvas, HUD, overlays, touch controls, importmap
